@@ -1,8 +1,8 @@
 import { Button, StyleSheet, Text, View } from "react-native";
-
 import { createStackNavigator } from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
-
+import Icon from "react-native-vector-icons/FontAwesome";
 function HomeScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
@@ -24,14 +24,35 @@ function DetailScreen() {
   );
 }
 const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      {/* <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Detail" component={DetailScreen} />
-      </Stack.Navigator>
+      </Stack.Navigator> */}
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          // tabBarIcon dùng để đổi icon
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+            if (route.name === "Home") {
+              iconName = "home";
+            } else if (route.name === "Detail") {
+              iconName = "list";
+            }
+            return <Icon name={iconName} color={color} size={20} />;
+          },
+          // 2 dòng dưới dùng để đổi màu icon khi chuyển tab
+          tabBarActiveTintColor: "blue",
+          tabBarInactiveTintColor: "gray",
+        })}
+      >
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Detail" component={DetailScreen} />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }
