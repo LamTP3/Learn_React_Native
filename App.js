@@ -1,90 +1,25 @@
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
-
+import { useState } from "react";
 export default function App() {
+  const [text, setText] = useState("");
+  function textInputChanged(textChanged) {
+    setText(textChanged);
+  }
+  function addTodo() {
+    console.log(text);
+  }
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
-        <TextInput placeholder="your todo" style={styles.textInput} />
-        <Button title="Add todo" />
+        <TextInput
+          onChangeText={textInputChanged}
+          placeholder="your todo"
+          style={styles.textInput}
+        />
+        <Button onPress={addTodo} title="Add todo" />
       </View>
-      <View>
+      <View style={styles.todoList}>
         <Text>The to do list</Text>
-      </View>
-
-      {/* <View style={{ padding: 50, flexDirection: "row" }}>
-        <View
-          style={{
-            width: 100,
-            height: 100,
-            alignItems: "center", // sắp xếp theo theo trục dọc
-            justifyContent: "center", // xắp sếp theo trục chính
-            backgroundColor: "red",
-          }}
-        >
-          <Text>1</Text>
-        </View>
-        <View
-          style={{
-            width: 100,
-            height: 100,
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "blue",
-          }}
-        >
-          <Text>2</Text>
-        </View>
-        <View
-          style={{
-            width: 100,
-            height: 100,
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "yellow",
-          }}
-        >
-          <Text>3</Text>
-        </View>
-      </View> */}
-      <View
-        style={{
-          padding: 50,
-          height: 300,
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "stretch",
-        }}
-      >
-        <View
-          style={{
-            alignItems: "center", // sắp xếp theo theo trục dọc
-            justifyContent: "center", // xắp sếp theo trục chính
-            backgroundColor: "red",
-            flex: 1,
-          }}
-        >
-          <Text>1</Text>
-        </View>
-        <View
-          style={{
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "blue",
-            flex: 2,
-          }}
-        >
-          <Text>2</Text>
-        </View>
-        <View
-          style={{
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "yellow",
-            flex: 1,
-          }}
-        >
-          <Text>3</Text>
-        </View>
       </View>
     </View>
   );
@@ -94,9 +29,16 @@ const styles = StyleSheet.create({
   container: {
     padding: 10,
     paddingTop: 100,
+    flex: 1,
   },
   inputContainer: {
     flexDirection: "row",
+    marginBottom: 50,
+    borderBottomWidth: 1,
+    paddingBottom: 50,
+    borderBottomColor: "grey",
+    flex: 1,
+    alignItems: "center",
   },
   textInput: {
     borderWidth: 2,
@@ -104,5 +46,8 @@ const styles = StyleSheet.create({
     padding: 8,
     marginRight: 8,
     width: "70%",
+  },
+  todoList: {
+    flex: 4,
   },
 });
