@@ -4,16 +4,13 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import HomeTabView from "./HomeTabView";
+import DetailList from "./DetailList";
 
 function HomeScreen({ navigation }) {
   return <HomeTabView />;
 }
 function DetailScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Detail Screen</Text>
-    </View>
-  );
+  return <DetailList />;
 }
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();

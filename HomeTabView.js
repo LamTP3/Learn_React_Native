@@ -4,12 +4,12 @@ import { View, StyleSheet, Text } from "react-native";
 import { TabView, SceneMap } from "react-native-tab-view";
 
 const FirstRoute = () => (
-  <View style={[styles.scence, { backgroundColor: "red" }]}>
+  <View style={[styles.scence, { backgroundColor: "#FF9999" }]}>
     <Text>First Route</Text>
   </View>
 );
 const SecondRoute = () => (
-  <View style={[styles.scence, { backgroundColor: "blue" }]}>
+  <View style={[styles.scence, { backgroundColor: "#FF66FF" }]}>
     <Text>Second Route</Text>
   </View>
 );
