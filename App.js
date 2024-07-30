@@ -1,32 +1,38 @@
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
-import { useState } from "react";
-export default function App() {
-  const [text, setText] = useState("");
-  const [todo, setTodo] = useState([]);
-  function textInputChanged(textChanged) {
-    setText(textChanged);
-  }
-  function addTodo() {
-    // setTodo([...todo, text]);
-    setTodo((currentTodo) => [...currentTodo, text]);
-    setText("");
-  }
+import { Button, StyleSheet, Text, View } from "react-native";
+
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
+
+function HomeScreen({ navigation }) {
   return (
-    <View style={styles.container}>
-      <View style={styles.inputContainer}>
-        <TextInput
-          onChangeText={textInputChanged}
-          placeholder="your todo"
-          style={styles.textInput}
-        />
-        <Button onPress={addTodo} title="Add todo" />
-      </View>
-      <View style={styles.todoList}>
-        {todo.map((item, index) => (
-          <Text key={index}>{item}</Text>
-        ))}
-      </View>
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Text>Home Screen</Text>
+      <Button
+        title="Open Detail"
+        onPress={() => {
+          navigation.navigate("Detail");
+        }}
+      />
     </View>
+  );
+}
+function DetailScreen() {
+  return (
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Text>Detail Screen</Text>
+    </View>
+  );
+}
+const Stack = createStackNavigator();
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Detail" component={DetailScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
