@@ -5,13 +5,48 @@ import { NavigationContainer } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import HomeTabView from "./HomeTabView";
 import DetailList from "./DetailList";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function HomeScreen({ navigation }) {
-  return <HomeTabView />;
+  return (
+    //  <HomeTabView />;
+
+    <View>
+      <Button
+        title="Store Data"
+        onPress={() => {
+          storeData("myName", "Thanh Pham");
+        }}
+      />
+      <Button
+        title="Get Data"
+        onPress={() => {
+          getData(`myName`);
+        }}
+      />
+    </View>
+  );
 }
 function DetailScreen() {
   return <DetailList />;
 }
+const storeData = async (key, value) => {
+  try {
+    await AsyncStorage.setItem(key, value);
+    console.log(`Data is stored sucessfully`);
+  } catch (error) {
+    console.error(`Error when store data: `, error);
+  }
+};
+
+const getData = async (key) => {
+  try {
+    const value = await AsyncStorage.getItem(key);
+    console.log(`Data retrieved successfully: `, value);
+  } catch (error) {
+    console.error(`Error while getting data: `, error);
+  }
+};
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
