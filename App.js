@@ -3,18 +3,10 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/FontAwesome";
+import HomeTabView from "./HomeTabView";
+
 function HomeScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Home Screen</Text>
-      <Button
-        title="Open Detail"
-        onPress={() => {
-          navigation.navigate("Detail");
-        }}
-      />
-    </View>
-  );
+  return <HomeTabView />;
 }
 function DetailScreen() {
   return (
