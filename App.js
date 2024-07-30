@@ -2,11 +2,14 @@ import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import { useState } from "react";
 export default function App() {
   const [text, setText] = useState("");
+  const [todo, setTodo] = useState([]);
   function textInputChanged(textChanged) {
     setText(textChanged);
   }
   function addTodo() {
-    console.log(text);
+    // setTodo([...todo, text]);
+    setTodo((currentTodo) => [...currentTodo, text]);
+    setText("");
   }
   return (
     <View style={styles.container}>
@@ -19,7 +22,9 @@ export default function App() {
         <Button onPress={addTodo} title="Add todo" />
       </View>
       <View style={styles.todoList}>
-        <Text>The to do list</Text>
+        {todo.map((item, index) => (
+          <Text key={index}>{item}</Text>
+        ))}
       </View>
     </View>
   );
